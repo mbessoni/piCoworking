@@ -1,18 +1,18 @@
 import { Entity, PrimaryGeneratedColumn, Column, Unique } from 'typeorm';
 
-@Entity()
+@Entity({name: 'autorizacao'})
 @Unique(['funcionario'])
 export class Autorizacao {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({name: 'idAutorizacao'})
   idAutorizacao: number;
 
-  @Column({ type: 'tinyint', nullable: false })
+  @Column({name: 'tipo', type: 'tinyint', nullable: false })
   tipo: number;
 
-  @Column({ length: 45, nullable: false })
+  @Column({name: 'obs', length: 45, nullable: false })
   obs: string;
 
-  @Column({ length: 45, nullable: false, unique: true })
+  @Column({name: 'funcionario', length: 45, nullable: false, unique: true })
   funcionario: string;
 
   // construtor

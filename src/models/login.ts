@@ -1,15 +1,15 @@
 import { Entity, PrimaryGeneratedColumn, Column, Unique } from 'typeorm';
 
-@Entity()
+@Entity({name: 'login'})
 @Unique(['login'])
 export class Login {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({name: 'id'})
   id: number ;
 
-  @Column({ length: 70, nullable: false })
+  @Column({ name: 'login', length: 70, nullable: false })
   login: string ;
 
-  @Column({ length: 45, nullable: false })
+  @Column({ name: 'senha', length: 45, nullable: false })
   senha: string ;
 
   // construtor

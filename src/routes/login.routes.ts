@@ -28,7 +28,7 @@ class LoginRoutes {
      this.router.delete("/login/:id", this.controller.delete);
  
      // Deleta todos os logins
-     this.router.delete("/logins/", this.controller.deleteAll);
+     //this.router.delete("/logins/", this.controller.deleteAll);
   }
 }
 

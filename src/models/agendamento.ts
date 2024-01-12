@@ -1,33 +1,33 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Login } from './login';
 
-@Entity()
+@Entity({name: 'agendamento'})
 export class Agendamento {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({name: 'idAgendamento'})
   idAgendamento: number;
 
-  @Column({ type: 'time', nullable: false })
+  @Column({ name: 'horaInicio', type: 'time', nullable: false })
   horaInicio: string;
 
-  @Column({ type: 'time', nullable: false })
+  @Column({ name: 'horaFim', type: 'time', nullable: false })
   horaFim: string;
 
-  @Column({ type: 'date', nullable: false })
+  @Column({ name: 'data', type: 'date', nullable: false })
   data: Date;
 
-  @Column({ length: 45, nullable: false })
+  @Column({ name: 'salaTrab', length: 45, nullable: false })
   salaTrab: string;
 
-  @Column({ length: 45, nullable: false })
+  @Column({ name: 'autorizacao', length: 45, nullable: false })
   autorizacao: string;
 
-  @Column({ length: 45, nullable: false })
+  @Column({  name: 'login', length: 45, nullable: false })
   login: string;
 
-  @Column({ type: 'date', nullable: false })
+  @Column({ name: 'dataRequisicao', type: 'date', nullable: false })
   dataRequisicao: Date;
 
-  @Column({ type: 'date', nullable: false })
+  @Column({ name: 'dataAlteracao', type: 'date', nullable: false })
   dataAlteracao: Date;
 
   @ManyToOne(() => Login)

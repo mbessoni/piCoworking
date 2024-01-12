@@ -1,15 +1,15 @@
 import { Entity, PrimaryColumn, Column, OneToOne, JoinColumn } from 'typeorm';
 import { Cliente } from './Cliente';
 
-@Entity()
+@Entity({name: 'clientePF'})
 export class ClientePF {
-  @PrimaryColumn({ length: 14 })
+  @PrimaryColumn({name: 'cpf', length: 14 })
   cpf: number ;
 
-  @Column({ length: 70, nullable: false })
+  @Column({name: 'nome', length: 70, nullable: false })
   nome: string ;
 
-  @Column({ type: 'date', nullable: false })
+  @Column({name: 'dataNasc', type: 'date', nullable: false })
   dataNasc: Date ;
 
   @OneToOne(() => Cliente)

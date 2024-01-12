@@ -2,23 +2,23 @@ import { Entity, PrimaryGeneratedColumn, Column, Unique, ManyToOne, JoinColumn }
 import { StatusCliente } from './statusCliente';
 import { Login } from './login';
 
-@Entity()
+@Entity({name: 'cliente'})
 @Unique(['email'])
 @Unique(['telefone'])
 export class Cliente {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({name: 'idCliente'})
   idCliente: number;
 
-  @Column({ length: 45, nullable: false })
+  @Column({name: 'email', length: 45, nullable: false })
   email: string;
 
-  @Column({ length: 45, nullable: false })
+  @Column({name: 'telefone', length: 45, nullable: false })
   telefone: string;
 
-  @Column({ length: 45, nullable: false })
+  @Column({name: 'endereco', length: 45, nullable: false })
   endereco: string;
 
-  @Column({ length: 45, nullable: false })
+  @Column({name: 'contrato', length: 45, nullable: false })
   contrato: string;
 
   @ManyToOne(() => StatusCliente)
