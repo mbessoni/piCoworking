@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es5",
+      "es6"
+  ],
+
+  "types": ["typeorm"],
+    "target": "es6",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "module": "commonjs",                                
+    "outDir": "./build",                                   
+    "esModuleInterop": true,                             
+    "forceConsistentCasingInFileNames": true,            
+    "strict": true,                                    
+    "sourceMap": true,
+  },
+  "include": ["src/**/*.ts", "data-source.ts"],
+  "exclude": ["node_modules"]
+}
+
