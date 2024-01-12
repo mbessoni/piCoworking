@@ -3,7 +3,7 @@ import { Cliente } from './Cliente';
 
 @Entity({name: 'clientePJ'})
 export class ClientePJ {
-  @PrimaryColumn({name: 'cnpj', length: 18 })
+  @PrimaryColumn({name: 'cnpj'})
   cnpj: number;
 
   @Column({name: 'razaoSocial', length: 70, nullable: false })

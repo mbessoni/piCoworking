@@ -19,7 +19,7 @@ export class Email {
   funcionario: Funcionario;
 
   @Column({ length: 45, nullable: false })
-  email1: string |undefined;
+  email1: string;
     static email: string;
 
     // construtor

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Testemunha } from "../models/Testemunha";
+import { Testemunha } from "../models/testemunha";
 import testemunhaRepository from "../repositories/testemunha.repository";
 
 export default class TestemunhaController {

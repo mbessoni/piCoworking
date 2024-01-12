@@ -3,7 +3,7 @@ import { Entity, PrimaryColumn, PrimaryGeneratedColumn, Column, Unique } from 't
 @Entity({name: 'testemunha'})
 @Unique(['cpf'])
 export class Testemunha {
-  @PrimaryGeneratedColumn({name: 'idTestemunha', type: 'int' })
+  @PrimaryGeneratedColumn({name: 'idTestemunha' })
   idTestemunha: number ;
 
   @Column({name: 'nome', length: 45, nullable: false })

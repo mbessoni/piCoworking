@@ -1,4 +1,4 @@
-import { Testemunha } from "../models/Testemunha";
+import { Testemunha } from "../models/testemunha";
 
 class TestemunhaRepository {
     testemunhasDB = new Array<Testemunha>();

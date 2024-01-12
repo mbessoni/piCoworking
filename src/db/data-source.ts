@@ -8,7 +8,7 @@ import { Cliente } from "../models/Cliente";
 import { ClientePF } from "../models/clientePF";
 import { ClientePJ } from "../models/clientePJ";
 import { Testemunha_has_Contrato } from "../models/Testemunha_has_Contrato";
-import { Testemunha } from "../models/Testemunha";
+import { Testemunha } from "../models/testemunha";
 import { Telefone } from "../models/Telefone";
 import { Contrato } from "../models/Contrato";
 import { Email } from "../models/Email";
@@ -30,11 +30,10 @@ export const AppDataSource = new DataSource({
     username: config.USER,
     password: config.PASSWORD,
     database: config.DB,
-    entities: [],
+    entities: [Agendamento, Autorizacao, Cliente, ClientePF, ClientePJ, Contrato, Email, Endereco, Funcionario, Login, Salas, 
+        StatusCliente, StatusSala, Telefone, Testemunha_has_Contrato, Testemunha, TipoContrato, TipoSalas, Usuario],
     synchronize: true,
     logging: false,
     
 })
 
-//Agendamento, Autorizacao, Cliente, ClientePF, ClientePJ, Contrato, Email, Endereco, Funcionario, Login, Salas, 
-//StatusCliente, StatusSala, Telefone, Testemunha_has_Contrato, Testemunha, TipoContrato, TipoSalas, Usuario

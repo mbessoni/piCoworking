@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, Unique, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column, PrimaryGeneratedColumn, Unique, ManyToOne, JoinColumn } from 'typeorm';
 import { Login } from './login';
 import { Autorizacao } from './autorizacao';
 
@@ -6,7 +6,7 @@ import { Autorizacao } from './autorizacao';
 @Unique(['email'])
 @Unique(['telefones'])
 export class Funcionario {
-  @PrimaryColumn({name: 'cpf', length: 14 })
+  @PrimaryColumn({name: 'cpf' })
   cpf: Number ;
 
   @Column({name: 'nome', length: 45, nullable: false })
