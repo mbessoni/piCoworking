@@ -1,15 +1,15 @@
-import { Entity, PrimaryColumn, Column, Unique } from 'typeorm';
+import { Entity, PrimaryColumn, PrimaryGeneratedColumn, Column, Unique } from 'typeorm';
 
-@Entity()
+@Entity({name: 'testemunha'})
 @Unique(['cpf'])
 export class Testemunha {
-  @PrimaryColumn({ type: 'int' })
+  @PrimaryGeneratedColumn({name: 'idTestemunha', type: 'int' })
   idTestemunha: number ;
 
-  @Column({ length: 45, nullable: false })
+  @Column({name: 'nome', length: 45, nullable: false })
   nome: string ;
 
-  @Column({ length: 14, nullable: true, unique: true })
+  @Column({name: 'cpf', length: 14, nullable: true, unique: true })
   cpf: string ;
 
   // construtor

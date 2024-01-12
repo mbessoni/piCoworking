@@ -1,11 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity()
+@Entity({name: 'TipoSalas'})
 export class TipoSalas {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({name: 'idTipoSalas'})
   idTipoSalas: number ;
 
-  @Column({ length: 80, nullable: false })
+  @Column({name: 'tipo', length: 80, nullable: false })
   tipo: string ;
 
   // construtor

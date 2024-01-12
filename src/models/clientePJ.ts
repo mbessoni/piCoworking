@@ -1,18 +1,18 @@
 import { Entity, PrimaryColumn, Column, OneToOne, JoinColumn } from 'typeorm';
 import { Cliente } from './Cliente';
 
-@Entity()
+@Entity({name: 'clientePJ'})
 export class ClientePJ {
-  @PrimaryColumn({ length: 18 })
+  @PrimaryColumn({name: 'cnpj', length: 18 })
   cnpj: number;
 
-  @Column({ length: 70, nullable: false })
+  @Column({name: 'razaoSocial', length: 70, nullable: false })
   razaoSocial: string;
 
-  @Column({ length: 70, nullable: false })
+  @Column({name: 'nomeFatasia', length: 70, nullable: false })
   nomeFantasia: string ;
 
-  @Column({ type: 'date', nullable: false })
+  @Column({name: 'dataFundacao', type: 'date', nullable: false })
   dataFundacao: Date ;
 
   @OneToOne(() => Cliente)

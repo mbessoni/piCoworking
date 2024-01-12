@@ -1,35 +1,35 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity()
+@Entity({name: 'contrato'})
 export class Contrato {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({name: 'idContrato'})
   idContrato: number;
 
-  @Column({ type: 'date', nullable: false })
+  @Column({name: 'dataInicio', type: 'date', nullable: false })
   dataInicio: Date;
 
-  @Column({ type: 'date', nullable: false })
+  @Column({name: 'dataFinal', type: 'date', nullable: false })
   dataFinal: Date ;
 
-  @Column({ type: 'date', nullable: false })
+  @Column({name: 'dataAlteracao', type: 'date', nullable: false })
   dataAlteracao: Date ;
 
-  @Column({ type: 'float', nullable: false })
+  @Column({name: 'valor', type: 'float', nullable: false })
   valor: number ;
 
-  @Column({ type: 'int', nullable: false })
+  @Column({name: 'horaSR', type: 'int', nullable: false })
   horaSR: number ;
 
-  @Column({ type: 'int', nullable: false })
+  @Column({name: 'horaSC', type: 'int', nullable: false })
   horaSC: number;
 
-  @Column({ type: 'int', nullable: false })
+  @Column({name: 'qtdBaias', type: 'int', nullable: false })
   qtdBaias: number ;
 
-  @Column({ type: 'int', nullable: false })
+  @Column({name: 'salaTrab', type: 'int', nullable: false })
   salaTrab: number;
 
-  @Column({ type: 'int', nullable: false })
+  @Column({name: 'testemunha', type: 'int', nullable: false })
   testemunha: number ;
 
   // construtor

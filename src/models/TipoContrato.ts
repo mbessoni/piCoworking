@@ -1,11 +1,11 @@
 import { Entity, PrimaryColumn, Column } from 'typeorm';
 
-@Entity('TipoContrato')
+@Entity({name: 'TipoContrato'})
 export class TipoContrato {
-  @PrimaryColumn()
+  @PrimaryColumn({name: 'idTipoContrato'})
   idTipoContrato: number;
 
-  @Column({ length: 80 })
+  @Column({name: 'descricao', length: 80 })
   descricao: string;
 
   // construtor

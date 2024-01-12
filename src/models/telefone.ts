@@ -2,15 +2,15 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 't
 import { Cliente } from './Cliente';
 import { Funcionario } from './funcionario';
 
-@Entity()
+@Entity({name: 'telefone'})
 export class Telefone {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({name: 'idTelefone'})
   idTelefone: number;
 
-  @Column({ length: 45, nullable: false })
+  @Column({name: 'telefone1', length: 45, nullable: false })
   telefone1: string;
 
-  @Column({ length: 45, nullable: true })
+  @Column({name: 'telefone2', length: 45, nullable: true })
   telefone2: string;
 
   @ManyToOne(() => Cliente)

@@ -1,14 +1,14 @@
 import { Entity, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { Testemunha } from './Testemunha';
+import { Testemunha } from './testemunha';
 import { Contrato } from './Contrato';
 import test from 'node:test';
 
-@Entity()
+@Entity({name: 'Testemunha_has_Contrato'})
 export class Testemunha_has_Contrato {
-  @PrimaryColumn()
+  @PrimaryColumn({name: 'Testemunha_idTestemunha'})
   Testemunha_idTestemunha: number;
 
-  @PrimaryColumn()
+  @PrimaryColumn({name: 'Contrato_idContrato'})
   Contrato_idContrato: number;
 
   @ManyToOne(() => Testemunha)

@@ -1,12 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Salas } from './Salas';
 
-@Entity()
+@Entity({name: 'statusSalas'})
 export class StatusSala {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({name: 'idStatus'})
   idStatus: number;
 
-  @Column({ length: 45, nullable: false })
+  @Column({name: 'tipo', length: 45, nullable: false })
   tipo: string;
 
   @ManyToOne(() => Salas)

@@ -1,33 +1,33 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Cliente } from './Cliente';
 
-@Entity()
+@Entity({name: 'endereco'})
 export class Endereco {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({name: 'idEndereco'})
   IdEndereco: number;
 
-  @Column({ length: 2, nullable: false })
+  @Column({name: 'uf', length: 2, nullable: false })
   uf: string ;
 
-  @Column({ length: 10, nullable: false })
+  @Column({name: 'cep', length: 10, nullable: false })
   cep: string ;
 
-  @Column({ length: 45, nullable: false })
+  @Column({name: 'cidade', length: 45, nullable: false })
   cidade: string ;
 
-  @Column({ length: 45, nullable: false })
+  @Column({name: 'bairro', length: 45, nullable: false })
   bairro: string ;
 
-  @Column({ length: 45, nullable: false })
+  @Column({name: 'rua', length: 45, nullable: false })
   rua: string ;
 
-  @Column({ length: 45, nullable: false })
+  @Column({name: 'numero', length: 45, nullable: false })
   numero: string ;
 
-  @Column({ length: 45, nullable: false })
+  @Column({name: 'complemento', length: 45, nullable: false })
   complemento: string ;
 
-  @Column({ length: 45, nullable: true })
+  @Column({name: 'obs', length: 45, nullable: true })
   obs: string ;
 
   @ManyToOne(() => Cliente)
