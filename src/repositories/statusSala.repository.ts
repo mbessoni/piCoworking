@@ -1,11 +1,12 @@
+import { AppDataSource } from "../db/data-source";
 import { StatusSala } from "../models/statusSala";
 
 class StatusSalaRepository {
-  statusesDB = new Array<StatusSala>();
+  statusesDB = AppDataSource.getRepository(StatusSala);
 
   async save(status: StatusSala): Promise<StatusSala> {
       try {
-          this.statusesDB.push(status);
+          this.statusesDB.save(status);
           return status;
       } catch (err) {
           throw new Error("Falha ao criar o StatusSala!");
@@ -14,7 +15,7 @@ class StatusSalaRepository {
 
   async retrieveAll(): Promise<Array<StatusSala>> {
       try {
-          return this.statusesDB;
+          return this.statusesDB.find();
       } catch (error) {
           throw new Error("Falha ao retornar os StatusSala!");
       }
@@ -22,17 +23,12 @@ class StatusSalaRepository {
 
   async retrieveById(statusId: number): Promise<StatusSala | null> {
     try {
-        var encontrado = false;
-        var statusEncontrado = null;
-        this.statusesDB.forEach(element => {            
-            if (element.idStatus == statusId) {
-                statusEncontrado = element;
-                encontrado = true;
-            }
-        });
-        if (encontrado) {
+        var statusEncontrado = this.statusesDB.findOneBy({
+            idStatus: statusId,
+        })         
+        if (statusEncontrado) {
             return statusEncontrado;
-        } 
+        }
         return null;         
     } catch (error) {
         throw new Error("Falha ao buscar o StatusSala!");
@@ -43,17 +39,8 @@ class StatusSalaRepository {
   async update(statusSalas: StatusSala): Promise<number> {
       const { idStatus, tipo } = statusSalas;
       try {
-          var encontrado = false;
-          this.statusesDB.forEach(element => {
-              if (element.idStatus == statusSalas.idStatus) {
-                  element.tipo == statusSalas.tipo;
-                  encontrado = true;
-              }
-          });
-          if (encontrado) {
-              return 1;
-          } 
-          return 0;
+          this.statusesDB.save(statusSalas);
+          return 1;
       } catch (error) {
           throw new Error("Falha ao atualizar o statusSala!");
       }
@@ -61,22 +48,19 @@ class StatusSalaRepository {
 
   async delete(statusId: number): Promise<number> {
       try {
-          var encontrado = false;
-          this.statusesDB.forEach(element => {
-              if (element.idStatus == statusId) {
-                  this.statusesDB.splice(this.statusesDB.indexOf(element), 1);
-                  encontrado = true;
-              }
-          });
-          if (encontrado) {
-              return 1;
-          } 
-          return 0;
+        var statusEncontrado = await this.statusesDB.findOneBy({
+            idStatus : statusId,
+        });
+        if (statusEncontrado) {
+            this.statusesDB.remove(statusEncontrado);
+            return 1;
+        }
+        return 0;
       } catch (error) {
           throw new Error("Falha ao deletar o statusSala!");
       }
   }
-
+/*
   async deleteAll(): Promise<number> {
       try {
           let num = this.statusesDB.length;
@@ -86,7 +70,7 @@ class StatusSalaRepository {
           throw new Error("Falha ao deletar todos os statusSala!");
       }
   }
-
+*/
 }
 
 export default new StatusSalaRepository();

@@ -1,11 +1,12 @@
+import { AppDataSource } from "../db/data-source";
 import { Email } from "../models/email";
 
 class EmailRepository {
-    emailsDB = new Array<Email>();
+    emailsDB = AppDataSource.getRepository(Email);
 
     async save(email: Email): Promise<Email> {
         try {
-            this.emailsDB.push(email);
+            this.emailsDB.save(email);
             return email;
         } catch (err) {
             throw new Error("Falha ao criar o Email!");
@@ -14,7 +15,7 @@ class EmailRepository {
 
     async retrieveAll(): Promise<Array<Email>> {
         try {
-            return this.emailsDB;
+            return this.emailsDB.find();
         } catch (error) {
             throw new Error("Falha ao retornar os Email!");
         }
@@ -22,15 +23,10 @@ class EmailRepository {
 
     async retrieveById(emailId: number): Promise<Email | null> {
         try {
-            var encontrado = false;
-            var emailEncontrado = null;
-            this.emailsDB.forEach(element => {            
-                if (element.idEmail == emailId) {
-                    emailEncontrado = element;
-                    encontrado = true;
-                }
-            });
-            if (encontrado) {
+            var emailEncontrado = this.emailsDB.findOneBy({
+                idEmail : emailId,
+            });           
+            if (emailEncontrado) {
                 return emailEncontrado;
             } 
             return null;         
@@ -42,17 +38,8 @@ class EmailRepository {
     async update(email: Email): Promise<number> {
         const { idEmail, email1 } = email;
         try {
-            var encontrado = false;
-            this.emailsDB.forEach(element => {
-                if (element.idEmail == email.idEmail) {
-                    element.email = Email.email;
-                    encontrado = true;
-                }
-            });
-            if (encontrado) {
-                return 1;
-            } 
-            return 0;
+            this.emailsDB.save(email);
+            return 1;
         } catch (error) {
             throw new Error("Falha ao atualizar o Email!");
         }
@@ -60,14 +47,11 @@ class EmailRepository {
 
     async delete(emailId: number): Promise<number> {
         try {
-            var encontrado = false;
-            this.emailsDB.forEach(element => {
-                if (element.idEmail == emailId) {
-                    this.emailsDB.splice(this.emailsDB.indexOf(element), 1);
-                    encontrado = true;
-                }
+            var emailEncontrado = await this.emailsDB.findOneBy({
+                idEmail: emailId,
             });
-            if (encontrado) {
+            if (emailEncontrado) {
+                this.emailsDB.remove(emailEncontrado);
                 return 1;
             } 
             return 0;
@@ -75,7 +59,7 @@ class EmailRepository {
             throw new Error("Falha ao deletar o Email!");
         }
     }
-
+/*
     async deleteAll(): Promise<number> {
         try {
             let num = this.emailsDB.length;
@@ -85,7 +69,7 @@ class EmailRepository {
             throw new Error("Falha ao deletar todos os Email!");
         }
     }
-
+*/
 }
 
 export default new EmailRepository();

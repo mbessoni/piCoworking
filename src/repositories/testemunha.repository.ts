@@ -1,11 +1,11 @@
+import { AppDataSource } from "../db/data-source";
 import { Testemunha } from "../models/testemunha";
 
 class TestemunhaRepository {
-    testemunhasDB = new Array<Testemunha>();
-
+    testemunhasDB = AppDataSource.getRepository(Testemunha);
     async save(testemunha: Testemunha): Promise<Testemunha> {
         try {
-            this.testemunhasDB.push(testemunha);
+            this.testemunhasDB.save(testemunha);
             return testemunha;
         } catch (err) {
             throw new Error("Falha ao criar o Testemunha!");
@@ -14,7 +14,7 @@ class TestemunhaRepository {
 
     async retrieveAll(): Promise<Array<Testemunha>> {
         try {
-            return this.testemunhasDB;
+            return this.testemunhasDB.find();
         } catch (error) {
             throw new Error("Falha ao retornar os Testemunha!");
         }
@@ -22,15 +22,10 @@ class TestemunhaRepository {
 
     async retrieveById(testemunhaId: number): Promise<Testemunha | null> {
         try {
-            var encontrado = false;
-            var testemunhaEncontrado = null;
-            this.testemunhasDB.forEach(element => {
-                if (element.idTestemunha == testemunhaId) {
-                    testemunhaEncontrado = element;
-                    encontrado = true;
-                }
+            var testemunhaEncontrado = this.testemunhasDB.findOneBy({
+                idTestemunha : testemunhaId,
             });
-            if (encontrado) {
+            if (testemunhaEncontrado){
                 return testemunhaEncontrado;
             }
             return null;
@@ -42,18 +37,8 @@ class TestemunhaRepository {
     async update(testemunha: Testemunha): Promise<number> {
         const { idTestemunha, nome , cpf} = testemunha;
         try {
-            var encontrado = false;
-            this.testemunhasDB.forEach(element => {
-                if (element.idTestemunha == testemunha.idTestemunha) {
-                    element.nome = testemunha.nome;
-                    element.cpf = testemunha.cpf;
-                    encontrado = true;
-                }
-            });
-            if (encontrado) {
-                return 1;
-            }
-            return 0;
+            this.testemunhasDB.save(testemunha);
+            return 1;
         } catch (error) {
             throw new Error("Falha ao atualizar o Testemunha!");
         }
@@ -61,14 +46,11 @@ class TestemunhaRepository {
 
     async delete(testemunhaId: number): Promise<number> {
         try {
-            var encontrado = false;
-            this.testemunhasDB.forEach(element => {
-                if (element.idTestemunha == testemunhaId) {
-                    this.testemunhasDB.splice(this.testemunhasDB.indexOf(element), 1);
-                    encontrado = true;
-                }
-            });
-            if (encontrado) {
+            var testemunhaEncontrado = await this.testemunhasDB.findOneBy({
+                idTestemunha : testemunhaId,
+            });  
+            if (testemunhaEncontrado) {
+                this.testemunhasDB.remove(testemunhaEncontrado);
                 return 1;
             }
             return 0;
@@ -76,7 +58,7 @@ class TestemunhaRepository {
             throw new Error("Falha ao deletar o Testemunha!");
         }
     }
-
+/*
     async deleteAll(): Promise<number> {
         try {
             let num = this.testemunhasDB.length;
@@ -86,7 +68,7 @@ class TestemunhaRepository {
             throw new Error("Falha ao deletar todos os Testemunha!");
         }
     }
-
+*/
 }
 
 export default new TestemunhaRepository();

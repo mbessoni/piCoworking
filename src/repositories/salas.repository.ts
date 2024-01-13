@@ -1,11 +1,11 @@
+import { AppDataSource } from "../db/data-source";
 import { Salas } from "../models/salas";
 
 class SalasRepository {
-  salassDB = new Array<Salas>();
-
+  salassDB = AppDataSource.getRepository(Salas);
   async save(salas: Salas): Promise<Salas> {
       try {
-          this.salassDB.push(salas);
+          this.salassDB.save(salas);
           return salas;
       } catch (err) {
           throw new Error("Falha ao criar o salas!");
@@ -14,7 +14,7 @@ class SalasRepository {
 
   async retrieveAll(): Promise<Array<Salas>> {
       try {
-          return this.salassDB;
+          return this.salassDB.find();
       } catch (error) {
           throw new Error("Falha ao retornar os salas!");
       }
@@ -22,17 +22,12 @@ class SalasRepository {
 
   async retrieveById(salasId: number): Promise<Salas | null> {
       try {
-          var encontrado = false;
-          var salasEncontrado = null;
-          this.salassDB.forEach(element => {
-              if (element.idSala == salasId) {
-                  salasEncontrado = element;
-                  encontrado = true;
-              }
-          });
-          if (encontrado) {
-              return salasEncontrado;
-          }
+        var salasEncontrado = this.salassDB.findOneBy({
+            idSala: salasId,
+        });
+        if (salasEncontrado) {
+            return salasEncontrado;   
+        }
           return null;
       } catch (error) {
           throw new Error("Falha ao buscar o salas!");
@@ -42,21 +37,8 @@ class SalasRepository {
   async update(salas: Salas): Promise<number> {
       const { idSala, nome , qtdPessoas, tipoSala, statusSala , obs } = salas;
       try {
-          var encontrado = false;
-          this.salassDB.forEach(element => {
-              if (element.idSala == salas.idSala) {
-                  element.nome = salas.nome;
-                  element.qtdPessoas = salas.qtdPessoas;
-                  element.tipoSala = salas.tipoSala;
-                  element.statusSala = salas.statusSala;
-                  element.obs = salas.obs;
-                  encontrado = true;
-              }
-          });
-          if (encontrado) {
-              return 1;
-          }
-          return 0;
+          this.salassDB.save(salas)
+          return 1;
       } catch (error) {
           throw new Error("Falha ao atualizar as salas!");
       }
@@ -64,22 +46,19 @@ class SalasRepository {
 
   async delete(salasId: number): Promise<number> {
       try {
-          var encontrado = false;
-          this.salassDB.forEach(element => {
-              if (element.idSala == salasId) {
-                  this.salassDB.splice(this.salassDB.indexOf(element), 1);
-                  encontrado = true;
-              }
-          });
-          if (encontrado) {
-              return 1;
+        var salasEncontrado = await this.salassDB.findOneBy({
+            idSala: salasId,
+        });
+        if (salasEncontrado) {
+            this.salassDB.remove(salasEncontrado);
+            return 1;
           }
           return 0;
       } catch (error) {
           throw new Error("Falha ao deletar o salas!");
       }
   }
-
+/*
   async deleteAll(): Promise<number> {
       try {
           let num = this.salassDB.length;
@@ -89,7 +68,7 @@ class SalasRepository {
           throw new Error("Falha ao deletar todos os salas!");
       }
   }
-
+*/
 }
 
 export default new SalasRepository();

@@ -1,11 +1,11 @@
+import { AppDataSource } from "../db/data-source";
 import { ClientePF } from "../models/clientePF";
 
 class ClientePFRepository {
-  clientesPFDB = new Array<ClientePF>();
-
+  clientesPFDB = AppDataSource.getRepository(ClientePF);
   async save(clientePF: ClientePF): Promise<ClientePF> {
       try {
-          this.clientesPFDB.push(clientePF);
+          this.clientesPFDB.save(clientePF);
           return clientePF;
       } catch (err) {
           throw new Error("Falha ao criar o ClientePF!");
@@ -14,26 +14,21 @@ class ClientePFRepository {
 
   async retrieveAll(): Promise<Array<ClientePF>> {
       try {
-          return this.clientesPFDB;
+          return this.clientesPFDB.find();
       } catch (error) {
           throw new Error("Falha ao retornar os ClientePF!");
       }
   }
 
-  async retrieveById(clientePFId: number): Promise<ClientePF | null> {
+  async retrieveById(clientePFCpf: number): Promise<ClientePF | null> {
       try {
-          var encontrado = false;
-          var clientePFEncontrado = null;
-          this.clientesPFDB.forEach(element => {
-              if (element.cpf == clientePFId) {
-                  clientePFEncontrado = element;
-                  encontrado = true;
-              }
-          });
-          if (encontrado) {
-              return clientePFEncontrado;
-          }
-          return null;
+        var clientePFEncontrado = this.clientesPFDB.findOneBy({
+            cpf: clientePFCpf,
+        });
+        if (clientePFEncontrado) {
+            return clientePFEncontrado;
+        }
+        return null;
       } catch (error) {
           throw new Error("Falha ao buscar o ClientePF!");
       }
@@ -71,47 +66,27 @@ class ClientePFRepository {
   async update(clientePF: ClientePF): Promise<number> {
     const { nome ,  cpf} = clientePF;
     try {
-        var encontrado = false;
-        this.clientesPFDB.forEach(element => {
-            if (element.cpf == clientePF.cpf) {
-                element.nome = clientePF.nome;
-                //element.emails = clientePF.emails;
-                //element.telefones = clientePF.telefones;
-                //element.endereco = clientePF.endereco;
-                //element.contrato = clientePF.contrato;
-                //element.status = clientePF.status;
-                //element.dataCadastro = clientePF.dataCadastro;
-                //element.dataAlteracao = clientePF.dataAlteracao;
-                element.cpf = clientePF.cpf;
-                encontrado = true;
-            }
-        });
-        if (encontrado) {
-            return 1;
-        }
-        return 0;
+        this.clientesPFDB.save(clientePF)
+        return 1;
     } catch (error) {
         throw new Error("Falha ao atualizar o ClientePF!");
     }
 }
-  async delete(clientePF: number): Promise<number> {
+  async delete(clientePFCpf: number): Promise<number> {
       try {
-          var encontrado = false;
-          this.clientesPFDB.forEach(element => {
-              if (element.cpf == clientePF) {
-                  this.clientesPFDB.splice(this.clientesPFDB.indexOf(element), 1);
-                  encontrado = true;
-              }
-          });
-          if (encontrado) {
-              return 1;
+        var clientePFEncontrado = await this.clientesPFDB.findOneBy({
+            cpf : clientePFCpf,
+        });
+        if (clientePFEncontrado) {
+            this.clientesPFDB.remove(clientePFEncontrado);
+            return 1;
           }
           return 0;
       } catch (error) {
           throw new Error("Falha ao deletar o Cliente!");
       }
   }
-
+/*
   async deleteAll(): Promise<number> {
       try {
           let num = this.clientesPFDB.length;
@@ -121,7 +96,7 @@ class ClientePFRepository {
           throw new Error("Falha ao deletar todos os Cliente!");
       }
   }
-
+*/
 }
 
 export default new ClientePFRepository();

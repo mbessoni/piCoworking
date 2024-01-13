@@ -1,11 +1,12 @@
+import { AppDataSource } from "../db/data-source";
 import { Endereco } from "../models/endereco";
 
 class EnderecoRepository {
-  enderecosDB = new Array<Endereco>();
+  enderecosDB = AppDataSource.getRepository(Endereco);
 
   async save(endereco: Endereco): Promise<Endereco> {
       try {
-          this.enderecosDB.push(endereco);
+          this.enderecosDB.save(endereco);
           return endereco;
       } catch (err) {
           throw new Error("Falha ao criar o Endereco!");
@@ -14,7 +15,7 @@ class EnderecoRepository {
 
   async retrieveAll(): Promise<Array<Endereco>> {
       try {
-          return this.enderecosDB;
+          return this.enderecosDB.find();
       } catch (error) {
           throw new Error("Falha ao retornar os Endereco!");
       }
@@ -22,18 +23,13 @@ class EnderecoRepository {
 
   async retrieveById(enderecoId: number): Promise<Endereco | null> {
       try {
-          var encontrado = false;
-          var enderecoEncontrado = null;
-          this.enderecosDB.forEach(element => {
-              if (element.IdEndereco == enderecoId) {
-                  enderecoEncontrado = element;
-                  encontrado = true;
-              }
-          });
-          if (encontrado) {
-              return enderecoEncontrado;
-          }
-          return null;
+        var enderecoEncontrado = this.enderecosDB.findOneBy({
+            IdEndereco : enderecoId,
+        });
+        if (enderecoEncontrado) {
+            return enderecoEncontrado;
+        }
+        return null;
       } catch (error) {
           throw new Error("Falha ao buscar o Endereco!");
       }
@@ -42,23 +38,8 @@ class EnderecoRepository {
   async update(endereco: Endereco): Promise<number> {
       const { IdEndereco, uf, cep, cidade, bairro, rua, numero, complemento} = endereco;
       try {
-          var encontrado = false;
-          this.enderecosDB.forEach(element => {
-              if (element.IdEndereco == endereco.IdEndereco) {
-                  element.uf = endereco.uf;
-                  element.cep = endereco.cep;
-                  element.cidade = endereco.cidade;
-                  element.bairro = endereco.bairro;
-                  element.rua = endereco.rua;
-                  element.numero = endereco.numero;
-                  element.complemento = endereco.complemento;
-                  encontrado = true;
-              }
-          });
-          if (encontrado) {
-              return 1;
-          }
-          return 0;
+        this.enderecosDB.save(endereco);
+        return 1;
       } catch (error) {
           throw new Error("Falha ao atualizar o Endereco!");
       }
@@ -66,22 +47,19 @@ class EnderecoRepository {
 
   async delete(enderecoId: number): Promise<number> {
       try {
-          var encontrado = false;
-          this.enderecosDB.forEach(element => {
-              if (element.IdEndereco == enderecoId) {
-                  this.enderecosDB.splice(this.enderecosDB.indexOf(element), 1);
-                  encontrado = true;
-              }
-          });
-          if (encontrado) {
-              return 1;
-          }
-          return 0;
+        var enderecoEncontrado = await this.enderecosDB.findOneBy({
+            IdEndereco : enderecoId,
+        });
+        if (enderecoEncontrado) {
+            this.enderecosDB.remove(enderecoEncontrado);
+            return 1;
+        }
+        return 0;
       } catch (error) {
           throw new Error("Falha ao deletar o Endereco!");
       }
   }
-
+/*
   async deleteAll(): Promise<number> {
       try {
           let num = this.enderecosDB.length;
@@ -91,7 +69,7 @@ class EnderecoRepository {
           throw new Error("Falha ao deletar todos os Enderecos!");
       }
   }
-
+*/
 }
 
 export default new EnderecoRepository();

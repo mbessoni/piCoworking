@@ -1,11 +1,11 @@
+import { AppDataSource } from "../db/data-source";
 import { Telefone } from "../models/telefone";
 
 class TelefoneRepository {
-    telefonesDB = new Array<Telefone>();
-
+    telefonesDB = AppDataSource.getRepository(Telefone);
     async save(telefone: Telefone): Promise<Telefone> {
         try {
-            this.telefonesDB.push(telefone);
+            this.telefonesDB.save(telefone);
             return telefone;
         } catch (err) {
             throw new Error("Falha ao criar o Telefone!");
@@ -14,7 +14,7 @@ class TelefoneRepository {
 
     async retrieveAll(): Promise<Array<Telefone>> {
         try {
-            return this.telefonesDB;
+            return this.telefonesDB.find();
         } catch (error) {
             throw new Error("Falha ao retornar os Telefones!");
         }
@@ -22,17 +22,12 @@ class TelefoneRepository {
 
     async retrieveById(telefoneId: number): Promise<Telefone | null> {
         try {
-            var encontrado = false;
-            var telefoneEncontrado = null;
-            this.telefonesDB.forEach(element => {            
-                if (element.idTelefone == telefoneId) {
-                    telefoneEncontrado = element;
-                    encontrado = true;
-                }
-            });
-            if (encontrado) {
+            var telefoneEncontrado = this.telefonesDB.findOneBy({
+                idTelefone : telefoneId,
+            });          
+            if (telefoneEncontrado) {
                 return telefoneEncontrado;
-            } 
+            }
             return null;         
         } catch (error) {
             throw new Error("Falha ao buscar o Telefone!");
@@ -42,18 +37,8 @@ class TelefoneRepository {
     async update(telefone: Telefone): Promise<number> {
         const { idTelefone, telefone1, telefone2 } = telefone;
         try {
-            var encontrado = false;
-            this.telefonesDB.forEach(element => {
-                if (element.idTelefone == telefone.idTelefone) {
-                    element.telefone1 = telefone.telefone1;
-                    element.telefone2 = telefone.telefone2;
-                    encontrado = true;
-                }
-            });
-            if (encontrado) {
-                return 1;
-            } 
-            return 0;
+            this.telefonesDB.save(telefone)
+            return 1;
         } catch (error) {
             throw new Error("Falha ao atualizar o Telefone!");
         }
@@ -61,14 +46,11 @@ class TelefoneRepository {
 
     async delete(telefoneId: number): Promise<number> {
         try {
-            var encontrado = false;
-            this.telefonesDB.forEach(element => {
-                if (element.idTelefone == telefoneId) {
-                    this.telefonesDB.splice(this.telefonesDB.indexOf(element), 1);
-                    encontrado = true;
-                }
+            var telefoneEncontrado = await this.telefonesDB.findOneBy({
+                idTelefone : telefoneId,
             });
-            if (encontrado) {
+            if (telefoneEncontrado) {
+                this.telefonesDB.remove(telefoneEncontrado)
                 return 1;
             } 
             return 0;
@@ -76,7 +58,7 @@ class TelefoneRepository {
             throw new Error("Falha ao deletar o Telefone!");
         }
     }
-
+/*
     async deleteAll(): Promise<number> {
         try {
             let num = this.telefonesDB.length;
@@ -86,7 +68,7 @@ class TelefoneRepository {
             throw new Error("Falha ao deletar todos os Telefone!");
         }
     }
-
+*/
 }
 
 export default new TelefoneRepository();
