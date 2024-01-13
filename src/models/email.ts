@@ -16,7 +16,7 @@ export class Email {
 
   @ManyToOne(() => Funcionario)
   @JoinColumn({ name: 'Funcionario_cpf' })
-  funcionario: Funcionario;
+  funcionarioEmail: Funcionario;
 
   @Column({ length: 45, nullable: false })
   email1: string;
@@ -24,11 +24,11 @@ export class Email {
 
     // construtor
     constructor(idEmail:number, email: string, cliente: Cliente, 
-      funcionario: Funcionario, email1: string){
+      funcionarioEmail: Funcionario, email1: string){
         this.idEmail = idEmail,
         this.email= email,
         this.cliente = cliente,
-        this.funcionario = funcionario,
+        this.funcionarioEmail = funcionarioEmail,
         this.email1 = email1
 }
 }

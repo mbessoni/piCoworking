@@ -12,10 +12,10 @@ export class Funcionario {
   @Column({name: 'nome', length: 45, nullable: false })
   nome: string ;
 
-  @Column({name: 'email', length: 45, nullable: false, unique: true })
+  @Column({name: 'email', length: 45, nullable: false })
   email: string ;
 
-  @Column({name: 'telefone', length: 45, nullable: false, unique: true })
+  @Column({name: 'telefones', length: 45, nullable: false })
   telefones: string ;
 
   @ManyToOne(() => Login)

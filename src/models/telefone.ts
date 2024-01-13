@@ -19,14 +19,14 @@ export class Telefone {
 
   @ManyToOne(() => Funcionario)
   @JoinColumn({ name: 'Funcionario_cpf1' })
-  funcionario: Funcionario  ;
+  funcionarioTelefone: Funcionario  ;
 
   // construtor
-  constructor( idTelefone: number, telefone1: string, telefone2: string, cliente: Cliente, funcionario: Funcionario){
+  constructor( idTelefone: number, telefone1: string, telefone2: string, cliente: Cliente, funcionarioTelefone: Funcionario){
     this.idTelefone = idTelefone,
     this.telefone1 = telefone1,
     this.telefone2 = telefone2,
     this.cliente = cliente,
-    this.funcionario = funcionario;
+    this.funcionarioTelefone = funcionarioTelefone;
   }
 }

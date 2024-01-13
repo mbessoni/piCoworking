@@ -18,7 +18,7 @@ export class Salas {
   obs: string 
 
   @ManyToOne(() => StatusSala)
-  @JoinColumn({ name: 'TipoSalas_idTipoSalas1' })
+  @JoinColumn({ name: 'StatusSalas_idStatus1' })
   statusSala: StatusSala 
 
   @ManyToOne(() => TipoSalas)

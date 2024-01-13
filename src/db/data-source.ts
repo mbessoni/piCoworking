@@ -30,8 +30,9 @@ export const AppDataSource = new DataSource({
     username: config.USER,
     password: config.PASSWORD,
     database: config.DB,
-    entities: [Funcionario, Login, Autorizacao, Email, Telefone, Cliente, StatusCliente],
-    synchronize: true,
+    entities: [Agendamento, Autorizacao, Cliente, ClientePF, ClientePJ, Contrato, Email, Endereco, Funcionario, Login, Salas, 
+        StatusCliente, StatusSala, Telefone, Testemunha_has_Contrato, Testemunha, TipoContrato, TipoSalas, Usuario],
+    synchronize: false,
     logging: false,
     
 })

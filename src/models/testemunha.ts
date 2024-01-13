@@ -9,7 +9,7 @@ export class Testemunha {
   @Column({name: 'nome', length: 45, nullable: false })
   nome: string ;
 
-  @Column({name: 'cpf', length: 14, nullable: true, unique: true })
+  @Column({name: 'cpf', length: 14, nullable: true})
   cpf: string ;
 
   // construtor
