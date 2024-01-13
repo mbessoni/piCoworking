@@ -28,7 +28,7 @@ class TelefoneRoutes {
      this.router.delete("/telefone/:id", this.controller.delete);
  
      // Deleta todos os telefones
-     this.router.delete("/telefones/", this.controller.deleteAll);
+     //this.router.delete("/telefones/", this.controller.deleteAll);
   }
 }
 

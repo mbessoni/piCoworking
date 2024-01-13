@@ -28,7 +28,7 @@ class TestemunhaRoutes {
      this.router.delete("/testemunha/:id", this.controller.delete);
  
      // Deleta todas as testemunhas
-     this.router.delete("/testemunhas/", this.controller.deleteAll);
+     //this.router.delete("/testemunhas/", this.controller.deleteAll);
   }
 }
 

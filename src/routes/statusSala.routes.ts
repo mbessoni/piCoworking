@@ -28,7 +28,7 @@ class StatusSalaRoutes {
      this.router.delete("/statusSala/:id", this.controller.delete);
  
      // Deleta todos os statusSalas
-     this.router.delete("/statusSalas/", this.controller.deleteAll);
+     //this.router.delete("/statusSalas/", this.controller.deleteAll);
   }
 }
 

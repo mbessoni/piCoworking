@@ -28,7 +28,7 @@ class SalaRoutes {
      this.router.delete("/sala/:id", this.controller.delete);
  
      // Deleta todas as salas
-     this.router.delete("/salas/", this.controller.deleteAll);
+     //this.router.delete("/salas/", this.controller.deleteAll);
   }
 }
 

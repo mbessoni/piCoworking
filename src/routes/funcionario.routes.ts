@@ -28,7 +28,7 @@ class FuncionarioRoutes {
      this.router.delete("/funcionario/:id", this.controller.delete);
  
      // Deleta todos os funcionarios
-     this.router.delete("/funcionarios/", this.controller.deleteAll);
+     //this.router.delete("/funcionarios/", this.controller.deleteAll);
   }
 }
 

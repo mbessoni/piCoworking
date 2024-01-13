@@ -28,7 +28,7 @@ class TipoSalaRoutes {
      this.router.delete("/tipoSala/:id", this.controller.delete);
  
      // Deleta todas as tipoSalas
-     this.router.delete("/tipoSalas/", this.controller.deleteAll);
+     //this.router.delete("/tipoSalas/", this.controller.deleteAll);
   }
 }
 
