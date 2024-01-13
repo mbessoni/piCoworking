@@ -5,7 +5,7 @@ import enderecoRepository from "../repositories/endereco.repository";
 export default class EnderecoController {
 
   async create(req: Request, res: Response) {
-      if (!req.body.uf) {
+      if (!req.body) {
           res.status(400).send({
               message: "Não pode ser vazio o Endereco!"
           });
@@ -90,7 +90,7 @@ export default class EnderecoController {
       }
   }
 
-  async deleteAll(req: Request, res: Response) {
+ /*  async deleteAll(req: Request, res: Response) {
       try {
           const num = await enderecoRepository.deleteAll();
           res.send({ message: `${num} Endereco foram deletados com sucesso!` });
@@ -99,6 +99,6 @@ export default class EnderecoController {
               message: "Algum erro ocorreu enquato deletava todos os Endereco."
           });
       }
-  }
+  } */
 
 }

@@ -5,7 +5,7 @@ import TiposSalasRepository from "../repositories/tiposSala.repository";
 export default class TiposSalasController {
 
     async create(req: Request, res: Response) {
-        if (!req.body.nome) {
+        if (!req.body) {
             res.status(400).send({
                 message: "Não pode ser vazio a tiposSalas!"
             });
@@ -97,7 +97,7 @@ export default class TiposSalasController {
         }
     }
 
-    async deleteAll(req: Request, res: Response) {
+    /* async deleteAll(req: Request, res: Response) {
         try {
             const num = await TiposSalasRepository.deleteAll();
 
@@ -108,5 +108,5 @@ export default class TiposSalasController {
             });
         }
     }
-
+ */
 }

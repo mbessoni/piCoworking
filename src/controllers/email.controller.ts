@@ -5,7 +5,7 @@ import emailRepository from "../repositories/email.repository";
 export default class EmailController {
 
     async create(req: Request, res: Response) {
-        if (!req.body.nEmail) {
+        if (!req.body) {
             res.status(400).send({
                 message: "Não pode ser vazio o Email!"
             });
@@ -90,7 +90,7 @@ export default class EmailController {
         }
     }
 
-    async deleteAll(req: Request, res: Response) {
+    /* async deleteAll(req: Request, res: Response) {
         try {
             const num = await emailRepository.deleteAll();
             res.send({ message: `${num} Email foram deletados com sucesso!` });
@@ -100,5 +100,5 @@ export default class EmailController {
             });
         }
     }
-
+ */
 }

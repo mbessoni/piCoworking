@@ -5,7 +5,7 @@ import agendamentoRepository from "../repositories/agendamento.repository";
 export default class AgendamentoController {
 
   async create(req: Request, res: Response) {
-      if (!req.body.id) {
+      if (!req.body) {
           res.status(400).send({
               message: "Não pode ser vazio o agendamento!"
           });
@@ -90,7 +90,7 @@ export default class AgendamentoController {
       }
   }
 
-  async deleteAll(req: Request, res: Response) {
+  /* async deleteAll(req: Request, res: Response) {
       try {
           const num = await agendamentoRepository.deleteAll();
           res.send({ message: `${num} agendamento foram deletados com sucesso!` });
@@ -100,5 +100,5 @@ export default class AgendamentoController {
           });
       }
   }
-
+ */
 }

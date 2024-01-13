@@ -5,7 +5,7 @@ import loginRepository from "../repositories/login.repository";
 export default class LoginController {
 
   async create(req: Request, res: Response) {
-      if (!req.body.user) {
+      if (!req.body) {
           res.status(400).send({
               message: "Não pode ser vazio o login!"
           });
@@ -90,7 +90,7 @@ export default class LoginController {
       }
   }
 
-  async deleteAll(req: Request, res: Response) {
+  /* async deleteAll(req: Request, res: Response) {
       try {
           const num = await loginRepository.deleteAll();
           res.send({ message: `${num} login foram deletados com sucesso!` });
@@ -99,6 +99,6 @@ export default class LoginController {
               message: "Algum erro ocorreu enquato deletava todos os login."
           });
       }
-  }
+  } */
 
 }

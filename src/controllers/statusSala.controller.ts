@@ -5,7 +5,7 @@ import statusSalaRepository from "../repositories/statusSala.repository";  // Ce
 export default class StatusSalaController {
 
     async create(req: Request, res: Response) {
-        if (!req.body.statusSala) {
+        if (!req.body) {
             res.status(400).send({
                 message: "Não pode ser vazio o StatusSala!"
             });
@@ -90,7 +90,7 @@ export default class StatusSalaController {
         }
     }
 
-    async deleteAll(req: Request, res: Response) {
+    /* async deleteAll(req: Request, res: Response) {
         try {
             const num = await statusSalaRepository.deleteAll();
             res.send({ message: `${num} StatusSala foram deletados com sucesso!` });
@@ -99,6 +99,6 @@ export default class StatusSalaController {
                 message: "Algum erro ocorreu enquato deletava todos os StatusSala."
             });
         }
-    }
+    } */
 
 }

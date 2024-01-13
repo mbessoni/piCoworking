@@ -9,7 +9,7 @@ import emailRepository from "../repositories/email.repository";
 export default class FuncionarioController {
   
   async create(req: Request, res: Response) {
-    if (!req.body.nome) {
+    if (!req.body) {
         res.status(400).send({
             message: "Não pode ser vazio o funcionario!"
         });
@@ -110,7 +110,7 @@ async delete(req: Request, res: Response) {
   }
 }
 
-async deleteAll(req: Request, res: Response) {
+/* async deleteAll(req: Request, res: Response) {
   try {
       const num = await funcionarioRepository.deleteAll();
       res.send({ message: `${num} funcionarios foram deletados com sucesso!` });
@@ -119,6 +119,6 @@ async deleteAll(req: Request, res: Response) {
           message: "Algum erro ocorreu enquato deletava todos os funcionarios."
       });
   }
-}
+} */
 
 }

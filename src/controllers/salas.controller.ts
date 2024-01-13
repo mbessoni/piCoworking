@@ -7,7 +7,7 @@ import salasRepository from "../repositories/salas.repository";
 export default class SalaController {
 
     async create(req: Request, res: Response) {
-        if (!req.body.nome) {
+        if (!req.body) {
             res.status(400).send({
                 message: "Não pode ser vazio a sala!"
             });
@@ -99,7 +99,7 @@ export default class SalaController {
         }
     }
 
-    async deleteAll(req: Request, res: Response) {
+/*     async deleteAll(req: Request, res: Response) {
         try {
             const num = await salasRepository.deleteAll();
 
@@ -109,7 +109,7 @@ export default class SalaController {
                 message: "Algum erro ocorreu enquato deletava todos as salas."
             });
         }
-    }
+    } */
 
 }
 

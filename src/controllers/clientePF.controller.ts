@@ -14,7 +14,7 @@ import { Cliente } from "../models/cliente";
 export default class ClientePFController {
   
   async create(req: Request, res: Response) {
-    if (!req.body.nome) {
+    if (!req.body) {
         res.status(400).send({
             message: "Não pode ser vazio o ClientePF!"
         });
@@ -120,7 +120,7 @@ async delete(req: Request, res: Response) {
   }
 }
 
-async deleteAll(req: Request, res: Response) {
+/* async deleteAll(req: Request, res: Response) {
   try {
       const num = await clientePFRepository.deleteAll();
       res.send({ message: `${num} ClientesPF foram deletados com sucesso!` });
@@ -129,7 +129,7 @@ async deleteAll(req: Request, res: Response) {
           message: "Algum erro ocorreu enquato deletava todos os ClientesPF."
       });
   }
-}
+} */
 
 }
   /*async create(req: Request, res: Response) {

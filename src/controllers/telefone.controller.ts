@@ -7,7 +7,7 @@ import telefoneRepository from "../repositories/telefone.repository";
 export default class TelefoneController {
 
     async create(req: Request, res: Response) {
-        if (!req.body.numTelefone) {
+        if (!req.body) {
             res.status(400).send({
                 message: "Não pode ser vazio o Telefone!"
             });
@@ -92,7 +92,7 @@ export default class TelefoneController {
         }
     }
 
-    async deleteAll(req: Request, res: Response) {
+    /* async deleteAll(req: Request, res: Response) {
         try {
             const num = await telefoneRepository.deleteAll();
             res.send({ message: `${num} Telefone foram deletados com sucesso!` });
@@ -101,7 +101,7 @@ export default class TelefoneController {
                 message: "Algum erro ocorreu enquato deletava todos os Telefone."
             });
         }
-    }
+    } */
 
 }
 

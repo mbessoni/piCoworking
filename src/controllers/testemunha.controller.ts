@@ -5,7 +5,7 @@ import testemunhaRepository from "../repositories/testemunha.repository";
 export default class TestemunhaController {
 
     async create(req: Request, res: Response) {
-        if (!req.body.nome) {
+        if (!req.body) {
             res.status(400).send({
                 message: "Não pode ser vazio o Testemunha!"
             });
@@ -90,7 +90,7 @@ export default class TestemunhaController {
         }
     }
 
-    async deleteAll(req: Request, res: Response) {
+    /* async deleteAll(req: Request, res: Response) {
         try {
             const num = await testemunhaRepository.deleteAll();
             res.send({ message: `${num} Testemunha foram deletados com sucesso!` });
@@ -100,5 +100,5 @@ export default class TestemunhaController {
             });
         }
     }
-
+ */
 }

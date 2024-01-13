@@ -10,7 +10,7 @@ import emailRepository from "../repositories/email.repository";
 export default class ClientePJController {
   
   async create(req: Request, res: Response) {
-    if (!req.body.nome) {
+    if (!req.body) {
         res.status(400).send({
             message: "Não pode ser vazio o ClientePJ!"
         });
@@ -113,7 +113,7 @@ async delete(req: Request, res: Response) {
   }
 }
 
-async deleteAll(req: Request, res: Response) {
+/* async deleteAll(req: Request, res: Response) {
   try {
       const num = await clientePJRepository.deleteAll();
       res.send({ message: `${num} ClientesPJ foram deletados com sucesso!` });
@@ -122,6 +122,6 @@ async deleteAll(req: Request, res: Response) {
           message: "Algum erro ocorreu enquato deletava todos os ClientesPJ."
       });
   }
-}
+} */
 
 }
