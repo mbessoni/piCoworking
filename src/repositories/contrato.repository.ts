@@ -1,4 +1,4 @@
-import { Contrato } from "../models/Contrato";
+import { Contrato } from "../models/contrato";
 
 class ContratoRepository {
   contratosDB = new Array<Contrato>();

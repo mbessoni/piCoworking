@@ -1,6 +1,6 @@
 import { Entity, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Testemunha } from './testemunha';
-import { Contrato } from './Contrato';
+import { Contrato } from './contrato';
 import test from 'node:test';
 
 @Entity({name: 'Testemunha_has_Contrato'})

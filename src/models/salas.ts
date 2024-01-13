@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { TipoSalas } from './TipoSalas';
 import { StatusSala } from './statusSala';
-import { Agendamento } from './Agendamento';
+import { Agendamento } from './agendamento';
 
 @Entity({name: 'Salas'})
 export class Salas {

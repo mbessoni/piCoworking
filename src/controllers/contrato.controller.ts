@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Contrato } from "../models/Contrato";
+import { Contrato } from "../models/contrato";
 import contratoRepository from "../repositories/contrato.repository";
 
 export default class ContratoController {

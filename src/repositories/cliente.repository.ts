@@ -1,4 +1,4 @@
-import { Cliente } from "../models/Cliente";
+import { Cliente } from "../models/cliente";
 
 class ClienteRepository {
     clientesDB = new Array<Cliente>();

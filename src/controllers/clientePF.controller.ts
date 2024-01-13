@@ -2,12 +2,12 @@ import { Request, Response } from "express";
 import { ClientePF } from "../models/clientePF";
 //import { Endereco } from "../models/Endereco";
 //import { Contrato } from "../models/Contrato";
-import { Email } from "../models/Email";
-import { Telefone } from "../models/Telefone";
+import { Email } from "../models/email";
+import { Telefone } from "../models/telefone";
 import clientePFRepository from "../repositories/clientePF.repository";
 import telefoneRepository from "../repositories/telefone.repository";
 import emailRepository from "../repositories/email.repository";
-import { Cliente } from "../models/Cliente";
+import { Cliente } from "../models/cliente";
 
 
 

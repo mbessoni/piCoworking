@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Telefone } from "../models/Telefone";
+import { Telefone } from "../models/telefone";
 import telefoneRepository from "../repositories/telefone.repository";
 
 

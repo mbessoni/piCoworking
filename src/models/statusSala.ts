@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { Salas } from './Salas';
+import { Salas } from './salas';
 
 @Entity({name: 'statusSalas'})
 export class StatusSala {

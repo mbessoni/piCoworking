@@ -1,4 +1,4 @@
-import { Agendamento } from "../models/Agendamento";
+import { Agendamento } from "../models/agendamento";
 
 class AgendamentoRepository {
   agendamentosDB = new Array<Agendamento>();

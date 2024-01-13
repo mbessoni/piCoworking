@@ -1,4 +1,4 @@
-import { Telefone } from "../models/Telefone";
+import { Telefone } from "../models/telefone";
 
 class TelefoneRepository {
     telefonesDB = new Array<Telefone>();

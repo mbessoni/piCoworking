@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Agendamento } from "../models/Agendamento";
+import { Agendamento } from "../models/agendamento";
 import agendamentoRepository from "../repositories/agendamento.repository";
 
 export default class AgendamentoController {

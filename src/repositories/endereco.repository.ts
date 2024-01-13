@@ -1,4 +1,4 @@
-import { Endereco } from "../models/Endereco";
+import { Endereco } from "../models/endereco";
 
 class EnderecoRepository {
   enderecosDB = new Array<Endereco>();

@@ -1,4 +1,4 @@
-import { Email } from "../models/Email";
+import { Email } from "../models/email";
 
 class EmailRepository {
     emailsDB = new Array<Email>();

@@ -1,4 +1,4 @@
-import { Salas } from "../models/Salas";
+import { Salas } from "../models/salas";
 
 class SalasRepository {
   salassDB = new Array<Salas>();

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Endereco } from "../models/Endereco";
+import { Endereco } from "../models/endereco";
 import enderecoRepository from "../repositories/endereco.repository";
 
 export default class EnderecoController {

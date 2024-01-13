@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Salas } from "../models/Salas";
+import { Salas } from "../models/salas";
 import salasRepository from "../repositories/salas.repository";
 
 

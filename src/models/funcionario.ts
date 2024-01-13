@@ -1,8 +1,8 @@
-import { Entity, PrimaryColumn, Column, PrimaryGeneratedColumn, Unique, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column, Unique, ManyToOne, JoinColumn } from 'typeorm';
 import { Login } from './login';
 import { Autorizacao } from './autorizacao';
 
-@Entity({name: 'funcionario',})
+@Entity({name: 'funcionario'})
 @Unique(['email'])
 @Unique(['telefones'])
 export class Funcionario {
@@ -19,7 +19,7 @@ export class Funcionario {
   telefones: string ;
 
   @ManyToOne(() => Login)
-  @JoinColumn({ name: 'Login_idLogin1' })
+  @JoinColumn({ name: 'Login_idLogin' })
   login: Login ;
 
   

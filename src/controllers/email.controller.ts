@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Email } from "../models/Email";
+import { Email } from "../models/email";
 import emailRepository from "../repositories/email.repository";
 
 export default class EmailController {

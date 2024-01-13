@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { Cliente } from "../models/Cliente";
-import { Telefone } from "../models/Telefone";
-import { Email } from "../models/Email";
+import { Cliente } from "../models/cliente";
+import { Telefone } from "../models/telefone";
+import { Email } from "../models/email";
 import clienteRepository from "../repositories/cliente.repository";
 import telefoneRepository from "../repositories/telefone.repository";
 import emailRepository from "../repositories/email.repository";
