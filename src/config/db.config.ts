@@ -1,8 +1,8 @@
 export const config = {
     HOST: "localhost",
     PORT: 3306,
-    USER: "root",
-    PASSWORD: "@Amoragape",
+    USER: "coworking",
+    PASSWORD: "@Coworking",
     DB: "picoworking",
     pool: {
         max: 5,
