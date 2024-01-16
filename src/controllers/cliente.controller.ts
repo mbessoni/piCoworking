@@ -36,7 +36,7 @@ export default class ClienteController {
       }
       */
 
-      try {
+      /* try {
         const cliente: Cliente = req.body;
   
         // Correção na validação de email e telefone
@@ -51,7 +51,20 @@ export default class ClienteController {
         }
         if (req.body.telefoneSgd !== undefined) {
           cliente.telefone = req.body.telefoneSgd;
-        }
+        } */
+
+        try {
+          const cliente: Cliente = req.body;
+    
+          // Correção na validação de email e telefone
+          if (req.body.email !== undefined) {
+            cliente.email = req.body.email;
+          }
+          
+          if (req.body.telefone !== undefined) {
+            cliente.telefone = req.body.telefone;
+          }
+          
 
       const savedcliente = await clienteRepository.save(cliente);
       res.status(201).send(savedcliente);
